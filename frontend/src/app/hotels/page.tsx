@@ -176,6 +176,12 @@ function HotelFormModal({
     if (!form.name.trim()) errs.name = 'El nombre es obligatorio';
     if (!form.city.trim()) errs.city = 'La ciudad es obligatoria';
     if (!form.country.trim()) errs.country = 'El país es obligatorio';
+    if (form.phone && !/^\+?[\d\s\-()]{7,20}$/.test(form.phone)) {
+      errs.phone = 'Formato inválido. Ej: +34 912 345 678';
+    }
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      errs.email = 'Formato de email inválido. Ej: hotel@ejemplo.com';
+    }
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -240,18 +246,24 @@ function HotelFormModal({
             </select>
           </Field>
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Teléfono">
+            <Field label="Teléfono" error={errors.phone}>
               <input
-                type="text" value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="input-field"
+                type="tel" value={form.phone}
+                placeholder="+34 912 345 678"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^\d\s\-+()]/g, '');
+                  setForm({ ...form, phone: val });
+                  setErrors(er => ({ ...er, phone: '' }));
+                }}
+                className={`input-field ${errors.phone ? 'border-red-400 focus:ring-red-400' : ''}`}
               />
             </Field>
-            <Field label="Email">
+            <Field label="Email" error={errors.email}>
               <input
                 type="email" value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="input-field"
+                placeholder="hotel@ejemplo.com"
+                onChange={(e) => { setForm({ ...form, email: e.target.value }); setErrors(er => ({ ...er, email: '' })); }}
+                className={`input-field ${errors.email ? 'border-red-400 focus:ring-red-400' : ''}`}
               />
             </Field>
           </div>

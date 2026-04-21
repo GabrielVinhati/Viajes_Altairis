@@ -201,6 +201,9 @@ function ReservationFormModal({
 
     if (!selectedRoomId) errs.room = 'Debe seleccionar una habitación';
     if (!form.guestName.trim()) errs.guestName = 'El nombre del huésped es obligatorio';
+    if (form.guestEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.guestEmail)) {
+      errs.guestEmail = 'Formato de email inválido. Ej: guest@ejemplo.com';
+    }
     if (!form.checkIn) errs.checkIn = 'La fecha de check-in es obligatoria';
     if (!form.checkOut) errs.checkOut = 'La fecha de check-out es obligatoria';
 
@@ -272,8 +275,10 @@ function ReservationFormModal({
             <label className="block">
               <span className="text-sm font-medium text-gray-700">Email</span>
               <input type="email" value={form.guestEmail}
-                onChange={(e) => setForm({ ...form, guestEmail: e.target.value })}
-                className="input-field mt-1" />
+                placeholder="guest@ejemplo.com"
+                onChange={(e) => { setForm({ ...form, guestEmail: e.target.value }); setErrors(er => ({ ...er, guestEmail: '' })); }}
+                className={`input-field mt-1 ${errors.guestEmail ? 'border-red-400 focus:ring-red-400' : ''}`} />
+              {errors.guestEmail && <p className="text-xs text-red-500 mt-1">{errors.guestEmail}</p>}
             </label>
           </div>
           <div className="grid grid-cols-2 gap-4">
