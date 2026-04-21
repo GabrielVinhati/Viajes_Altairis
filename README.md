@@ -18,10 +18,10 @@ Backoffice web fullstack para gestao de hoteis, habitacoes, disponibilidade e re
 ```bash
 git clone https://github.com/GabrielVinhati/Viajes_Altairis.git
 cd Viajes_Altairis
-docker compose up -d --build
+./start.sh
 ```
 
-Pronto. Aguarde ~30 segundos para o banco inicializar e o seed rodar.
+O script builda, sobe os containers, espera ficar pronto e mostra as URLs para acessar.
 
 - **Frontend:** http://localhost:4173
 - **Backend API:** http://localhost:4174/api
