@@ -18,7 +18,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "4174:5000"
     environment:
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=altairis;Username=altairis;Password=altairis123
       - ASPNETCORE_ENVIRONMENT=Development
@@ -32,11 +32,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+        - NEXT_PUBLIC_API_URL=http://localhost:4174/api
     ports:
-      - "3000:3000"
+      - "4173:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+      - NEXT_PUBLIC_API_URL=http://localhost:4174/api
     depends_on:
       - backend
 

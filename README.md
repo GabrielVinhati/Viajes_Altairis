@@ -16,18 +16,16 @@ Backoffice web fullstack para gestao de hoteis, habitacoes, disponibilidade e re
 **Requisito unico:** ter [Docker](https://docs.docker.com/get-docker/) instalado.
 
 ```bash
-git clone <repo-url>
-cd backoffice_operativo
+git clone https://github.com/GabrielVinhati/Viajes_Altairis.git
+cd Viajes_Altairis
 docker compose up -d --build
 ```
 
 Pronto. Aguarde ~30 segundos para o banco inicializar e o seed rodar.
 
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:5000/api
-- **Swagger:** http://localhost:5000/swagger
-
-> Se a porta 3000 ja estiver em uso, altere no `docker-compose.yml`: `"3001:3000"`
+- **Frontend:** http://localhost:4173
+- **Backend API:** http://localhost:4174/api
+- **Swagger:** http://localhost:4174/swagger
 
 ## Para parar
 
