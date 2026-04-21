@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+dist/
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.env
+.env.local
+pgdata/
